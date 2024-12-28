@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[5]:
+# In[4]:
 
 
 import task_a
@@ -9,7 +9,7 @@ import task_b
 import task_c
 
 
-# In[6]:
+# In[1]:
 
 
 def main_menu():
@@ -81,8 +81,8 @@ def menu_task_a(data_list):
         print("\n----MENU A----") #used "\n" so that each time the menu is shown it has a space of one line before just to look clean and easy to read
         print("1. Retrieve Patient's Info (Age, Gender, Smoking history and Ethnicity)")
         print("2. Retrieve Medical History based on Ethnicity")
-        print("3. Retrieve Treatment details for patients who survived more than 100 months")
-        print("4. Retrieve Cancer stage and more info for young patients(<45) with ")
+        print("3. Retrieve general details for patients who survived more than 100 months with a specific treatment")
+        print("4. Retrieve Cancer stage and more info for young patients(<45) with a Kidney disease or Diabetes ")
         print("5. Return to the Main Menu")
         choice = input("Please choose one option")
         #integer input is not used to avoid input error 
@@ -95,14 +95,14 @@ def menu_task_a(data_list):
         #similar approach for all other choices
         
         elif choice =="2":
-            ethnicity = input("Please enter the ethnicity")
+            ethnicity = input("Please enter the ethnicity: Hispanic/Caucasian/African American/Asian/Other:")
             result = task_a.retrieve_medical_history_by_ethnicity(ethnicity, data_list)
             print(result)
             
             
 
         elif choice == "3":
-            treatment_details = input("Please enter the Treatment Details")
+            treatment_details = input("Please enter the Treatment name: Surgery/Radiation Therapy/Chemotherapy/Targeted Therapy:")
             result = task_a.retrieve_treatment_details(data_list, treatment_details)
             print(result)
             
@@ -129,35 +129,35 @@ def menu_task_b(df_main):
         print("\n----MENU----")#used "while true" loop so that the menu is shown to the user without the need of running the function again and again
         print("1. Identify the top 3 treatments for a certain ethnicity where patients have survived more than 100 months.")
         print("2. Find out the average WBC count for a specific treatment in a specific ethnicity.")
-        print("3. Find out the average number of smoking packs for patients in each treatment group with a blood pressure(pulse) over 90 and a tumor size smaller than 15.0mm, based on tumor location.")
-        print("4. Find out the survival rate of patients based on a specific treatment")
+        print("3. Find out the average smoking packs for patients in each treatment group with a BP(pulse) > 90 and a tumor size > 15.0mm, for certain tumor location.")
+        print("4. Find out the survival rate of patients for a specific treatment")
         print("5. Main Menu")
         choice =input("Please Select from the options above")
         #integer input is not used to avoid input error 
         #So that if user enters a string value (eg.a,b,xy) it runs the "else" statement from below and asks the user to enter a valid option 
        
         if choice== "1":
-            ethnicity = input("What ethnicity do you want to find out the top 3 treatments for?:")
+            ethnicity = input("What ethnicity do you want to find out the top 3 treatments for? : (Hispanic/Caucasian/African American/Asian/Other):")
             result = task_b.top_3_treatments(df_main, ethnicity)
             print(f"Top 3 treatments for Ethnicity: {ethnicity}") #f-string to display the result in a easy to read format
             print(result)
 
         #similar approach for rest of the options
         elif choice== "2":
-            ethnicity = input("Please enter the ethnicity you want to find out the average WBC for?:")
-            treatment = input("Please enter the treatment you want to find out the average WBC for?:")
+            ethnicity = input("Please enter the ethnicity you want to find out the average WBC for? (Hispanic/Caucasian/African American/Asian/Other):")
+            treatment = input("Please enter the treatment you want to find out the average WBC for? (Surgery/Radiation Therapy/Chemotherapy/Targeted Therapy):")
             result = task_b.average_wbc(df_main, ethnicity, treatment)
             print(result)
         
         elif choice== "3":
-            tumor_location = input("Please enter the tumor location:")
+            tumor_location = input("Please enter the tumor location: Lower Lobe/Middle Lobe/Upper Lobe:")
             result = task_b.average_smoking_packs(df_main, tumor_location)
             
             print(result)
             
         
         elif choice== "4":
-            treatment = input("What treatment do you want to find out the survival rate for?:")
+            treatment = input("What treatment do you want to find out the survival rate for? (Surgery/Radiation Therapy/Chemotherapy/Targeted Therapy):")
             result = task_b.survival_rate_by_treatment(df_main, treatment)
             print(result)
         
@@ -175,10 +175,10 @@ def menu_task_b(df_main):
 def menu_task_c(df_main):
     while True:
         print("\n----MENU----") #used "while true" loop so that the menu is shown to the user without the need of running the function again and again
-        print("1. Proportion of Treatments used among a certain Ethnicity.")
+        print("1. Proportion of Treatments used among a certain Ethnicity .")
         print("2. Trend of Average smoking packs across different cancer stages for each Ethnicity.")
         print("3. Comparison of Average Blood pressure across different treatment types")
-        print("4. Age VS Survival rate by Treatment type")
+        print("4. Average platelets count of patients with different cancer stages")
         print("5. Main Menu")
         print("6. EXIT")
         choice = input("Please Select from the options above")
@@ -186,7 +186,7 @@ def menu_task_c(df_main):
         #So that if user enters a string value (eg.a,b,xy) it runs the "else" statement from below and asks the user to enter a valid option 
        
         if choice== "1":
-            ethnicity = input("What ethnicity do you want to find out the treatments proportion for?")
+            ethnicity = input("What ethnicity do you want to find out the treatments proportion for?: Hispanic/Caucasian/African American/Asian/Other:")
             result = task_c.treatment_proportion_by_ethnicity(df_main, ethnicity)
             print(result)
 
@@ -200,7 +200,7 @@ def menu_task_c(df_main):
             print(result)
     
         elif choice == "4":
-            result = task_c.survival_rate_for_treatments(df_main)
+            result = task_c.avg_platelets_by_stage(df_main)
             print(result)
                 
         elif choice== "5":
