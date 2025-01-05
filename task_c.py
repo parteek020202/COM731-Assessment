@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-# In[4]:
+# In[1]:
 
 
 def load_data_task_c(file_path): #loads function using the file path entered during first step data loading
@@ -28,7 +28,7 @@ def load_data_task_c(file_path): #loads function using the file path entered dur
       
 
 
-# In[5]:
+# In[2]:
 
 
 def treatment_proportion_by_ethnicity(df_main, ethnicity): 
@@ -51,13 +51,13 @@ def treatment_proportion_by_ethnicity(df_main, ethnicity):
         plt.title(f"Proportion of Treatments for Ethnicity: {ethnicity}") #titile which changes according to the ethnicity entered by user
         plt.legend(loc = "best")  #automatically chooses the best location to plot the chart
         plt.show()
-        return
+        return "Pie Chart"
         
     except Exception as e: #in case of any error
         print(f"An error has occured:{e}")
 
 
-# In[6]:
+# In[3]:
 
 
 def average_smoking_trend(df_main):
@@ -83,12 +83,12 @@ def average_smoking_trend(df_main):
         plt.title("Trend of average smoking packs Across cancer stages by Ethnicity") #title of the chart
         plt.legend(title= "Ethnicity", loc = "best") #setting the location as best
         plt.show() #shows the chart
-        return
+        return "Line Graph"
     except Exception as e: 
         print(f"An error has occured:{e}") #prints error message accordingly
 
 
-# In[7]:
+# In[4]:
 
 
 def blood_ppressure_comparison(df_main):
@@ -119,12 +119,12 @@ def blood_ppressure_comparison(df_main):
         plt.legend()
         plt.tight_layout() #ensure everything is neatly spaced and does not go out of the chart
         plt.show()
-        return
+        return "Bar Chart"
     except Exception as e:
         print(f"An error has occured:{e}") #prints error message accordingly
 
 
-# In[1]:
+# In[6]:
 
 
 def avg_platelets_by_stage(df_main):
@@ -140,10 +140,8 @@ def avg_platelets_by_stage(df_main):
         fig = plt.figure(figsize=(10,6))
         #setting the figure size and plotting the chart
 
-        colors = ['blue', 'green', 'red', 'orange', 'purple', 'cyan', 'magenta'][:len(df_group)]
-        #assigning different colours for different bars
         
-        plt.bar(x_axis, df_group, width = bar_width, label = "Platelets Count", color = colors)  
+        plt.bar(x_axis, df_group, width = bar_width, label = "Platelets Count")  
         #plotting the bar
         
         plt.xticks(x_axis, df_group.index, rotation = 45) 
@@ -156,7 +154,8 @@ def avg_platelets_by_stage(df_main):
         plt.legend()
         plt.tight_layout() #ensure everything is neatly spaced and does not go out of the chart
         plt.show()
-        return
+        return "Bar Chart"
+        
     except Exception as e:
         print(f"An error has occured:{e}") #prints error message accordingly
 
